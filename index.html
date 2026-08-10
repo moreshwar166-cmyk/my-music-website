@@ -1,165 +1,193 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मेरा म्यूजिक</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>My Music</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .page {
-            min-height: 100vh;
-            background:
-                linear-gradient(rgba(80,0,0,0.55), rgba(20,0,0,0.75)),
-                url("background.jpg");
-            background-size: cover;
-            background-position: center;
+body{
+    font-family:Arial,sans-serif;
+    color:white;
+    background:#111;
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.page{
+    min-height:100vh;
+    padding:40px 15px;
+    background:
+        linear-gradient(rgba(60,0,0,.6),rgba(0,0,0,.85)),
+        url("background.jpg");
+    background-size:cover;
+    background-position:center;
+}
 
-        .content {
-            width: 90%;
-            max-width: 1000px;
-            text-align: center;
-        }
+.container{
+    max-width:800px;
+    margin:auto;
+}
 
-        h1 {
-            font-size: 90px;
-            line-height: 0.9;
-            margin-bottom: 80px;
-            color: white;
-        }
+h1{
+    text-align:center;
+    font-size:60px;
+    margin-bottom:10px;
+}
 
-        .player {
-            margin: auto;
-            max-width: 650px;
-            padding: 20px 25px;
-            border-radius: 50px;
-            background: rgba(180,70,50,0.85);
+.subtitle{
+    text-align:center;
+    color:#ddd;
+    margin-bottom:35px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+.player{
+    background:rgba(120,30,20,.85);
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:25px;
+    text-align:center;
+}
 
-        .song-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-        }
+#nowPlaying{
+    margin-bottom:15px;
+    font-size:18px;
+}
 
-        .song-info img {
-            width: 65px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+audio{
+    width:100%;
+}
 
-        .song-info h3 {
-            font-size: 17px;
-        }
+.playlist{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
 
-        .song-info p {
-            margin-top: 5px;
-            color: #ddd;
-        }
+.song{
+    background:rgba(255,255,255,.12);
+    padding:12px 15px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
 
-        button {
-            width: 55px;
-            height: 55px;
-            border: none;
-            border-radius: 50%;
-            background: white;
-            color: #222;
-            font-size: 25px;
-            cursor: pointer;
-        }
+.song.active{
+    background:rgba(180,60,40,.9);
+}
 
-        @media(max-width:600px) {
-            h1 {
-                font-size: 55px;
-                margin-bottom: 50px;
-            }
+.song button{
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
 
-            .player {
-                padding: 15px;
-            }
-
-            .song-info h3 {
-                font-size: 13px;
-            }
-
-            .song-info p {
-                font-size: 11px;
-            }
-
-            button {
-                width: 45px;
-                height: 45px;
-            }
-        }
-    </style>
+@media(max-width:600px){
+    h1{
+        font-size:45px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="page">
+<div class="container">
 
-    <div class="content">
+<h1>मेरा म्यूजिक</h1>
 
-        <h1>
-            तुमसे<br>
-            प्यार
-        </h1>
+<p class="subtitle">मेरे गाने 🎵</p>
 
-        <div class="player">
+<div class="player">
 
-            <div class="song-info">
+<div id="nowPlaying">
+गाना चुनें
+</div>
 
-                <img src="background.jpg">
+<audio id="audio" controls></audio>
 
-                <div>
-                    <h3>मुझे मोहब्बत का इज़हार करता</h3>
-                    <p>My Music Official</p>
-                </div>
+</div>
 
-            </div>
+<div class="playlist">
 
-            <audio id="music" src="song.mp3"></audio>
+<div class="song" onclick="playSong(1,this)">
+<span>🎵 Song 1</span>
+<button>▶</button>
+</div>
 
-            <button onclick="playMusic()">▶</button>
+<div class="song" onclick="playSong(2,this)">
+<span>🎵 Song 2</span>
+<button>▶</button>
+</div>
 
-        </div>
+<div class="song" onclick="playSong(3,this)">
+<span>🎵 Song 3</span>
+<button>▶</button>
+</div>
 
-    </div>
+<div class="song" onclick="playSong(4,this)">
+<span>🎵 Song 4</span>
+<button>▶</button>
+</div>
 
+<div class="song" onclick="playSong(5,this)">
+<span>🎵 Song 5</span>
+<button>▶</button>
+</div>
+
+<div class="song" onclick="playSong(6,this)">
+<span>🎵 Song 6</span>
+<button>▶</button>
+</div>
+
+<div class="song" onclick="playSong(7,this)">
+<span>🎵 Song 7</span>
+<button>▶</button>
+</div>
+
+<div class="song" onclick="playSong(8,this)">
+<span>🎵 Song 8</span>
+<button>▶</button>
+</div>
+
+<div class="song" onclick="playSong(9,this)">
+<span>🎵 Song 9</span>
+<button>▶</button>
+</div>
+
+</div>
+
+</div>
 </div>
 
 <script>
 
-function playMusic() {
-    let music = document.getElementById("music");
+const audio = document.getElementById("audio");
+const nowPlaying = document.getElementById("nowPlaying");
 
-    if (music.paused) {
-        music.play();
-    } else {
-        music.pause();
-    }
+function playSong(number, element){
+
+    audio.src = "song (" + number + ").mp3";
+
+    nowPlaying.innerText = "अब चल रहा है: Song " + number;
+
+    document.querySelectorAll(".song").forEach(song => {
+        song.classList.remove("active");
+    });
+
+    element.classList.add("active");
+
+    audio.play();
 }
 
 </script>
