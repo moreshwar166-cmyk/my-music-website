@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मेरा म्यूजिक</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        .page {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(80,0,0,0.55), rgba(20,0,0,0.75)),
+                url("background.jpg");
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 90px;
+            line-height: 0.9;
+            margin-bottom: 80px;
+            color: white;
+        }
+
+        .player {
+            margin: auto;
+            max-width: 650px;
+            padding: 20px 25px;
+            border-radius: 50px;
+            background: rgba(180,70,50,0.85);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .song-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .song-info img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .song-info h3 {
+            font-size: 17px;
+        }
+
+        .song-info p {
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        button {
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            color: #222;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        @media(max-width:600px) {
+            h1 {
+                font-size: 55px;
+                margin-bottom: 50px;
+            }
+
+            .player {
+                padding: 15px;
+            }
+
+            .song-info h3 {
+                font-size: 13px;
+            }
+
+            .song-info p {
+                font-size: 11px;
+            }
+
+            button {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="content">
+
+        <h1>
+            तुमसे<br>
+            प्यार
+        </h1>
+
+        <div class="player">
+
+            <div class="song-info">
+
+                <img src="background.jpg">
+
+                <div>
+                    <h3>मुझे मोहब्बत का इज़हार करता</h3>
+                    <p>My Music Official</p>
+                </div>
+
+            </div>
+
+            <audio id="music" src="song.mp3"></audio>
+
+            <button onclick="playMusic()">▶</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function playMusic() {
+    let music = document.getElementById("music");
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+</script>
+
+</body>
+</html>
