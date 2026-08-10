@@ -194,3 +194,63 @@ function playSong(number, element){
 
 </body>
 </html>
+// ===============================
+// AUTO NEXT SONG
+// ===============================
+
+let currentSong = 0;
+
+const audio = document.getElementById("audio");
+
+// गाना खत्म होने पर अगला गाना चलाएं
+audio.addEventListener("ended", function () {
+    currentSong++;
+
+    // आखिरी गाना खत्म होने के बाद फिर से पहला गाना
+    if (currentSong >= songs.length) {
+        currentSong = 0;
+    }
+
+    playSong(currentSong);
+});
+
+function playSong(index) {
+    currentSong = index;
+
+    audio.src = songs[index].src;
+
+    audio.play().catch(error => {
+        console.log("Audio play नहीं हो पाया:", error);
+    });
+
+    // Song title update
+    const title = document.getElementById("song-title");
+
+    if (title) {
+        title.textContent = songs[index].title;
+    }
+}
+<div id="liveDate"></div>
+<div id="liveTime"></div>
+function updateDateTime() {
+    const now = new Date();
+
+    const date = now.toLocaleDateString("hi-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+
+    const time = now.toLocaleTimeString("hi-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    document.getElementById("liveDate").textContent = date;
+    document.getElementById("liveTime").textContent = time;
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
